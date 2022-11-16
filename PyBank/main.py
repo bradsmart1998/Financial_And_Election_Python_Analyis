@@ -6,7 +6,7 @@ from statistics import mean
 csvpath = os.path.join('Resources', 'budget_data.csv')
 
 # open the csv file 
-with open(csvpath, 'r', encoding="utf") as csvfile:
+with open(csvpath, 'r', encoding="utf8") as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
 
     # What are the headers of the csv file
@@ -43,7 +43,7 @@ with open(csvpath, 'r', encoding="utf") as csvfile:
 output_path = os.path.join('Analysis', 'analysis.txt')
 
 # open the textfile
-with open(output_path, 'w') as textfile:
+with open(output_path, 'w', encoding="utf8") as textfile:
     # active the text writer
     txtwriter = csv.writer(textfile)
     
