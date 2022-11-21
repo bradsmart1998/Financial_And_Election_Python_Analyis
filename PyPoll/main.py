@@ -14,6 +14,12 @@ with open(csvpath, 'r', encoding="utf") as csvfile:
     csv_header = next(csvreader)
     print(f"This is the header: {csv_header}")
 
+    # create a candidate list
+    candidate_list = [
+    "Charles Casper Stockham",
+    "Diana DeGette",
+    "Raymon Anthony Doane"]
+   
      # creating empty lists to store the ballot id and candidate name
     ballot = []
     candidate = []
@@ -28,9 +34,9 @@ with open(csvpath, 'r', encoding="utf") as csvfile:
     total_votes = (len(ballot))
     
     # Count how many votes each candidate got
-    count_a = candidate.count('Charles Casper Stockham')
-    count_b = candidate.count('Diana DeGette')
-    count_c = candidate.count('Raymon Anthony Doane')
+    count_a = candidate.count(candidate_list[0])
+    count_b = candidate.count(candidate_list[1])
+    count_c = candidate.count(candidate_list[2])
 
     # Comvert the amount of votes to a percentage with three deceimal places
     # To determine the winner of the election
@@ -42,17 +48,16 @@ with open(csvpath, 'r', encoding="utf") as csvfile:
 output_path = os.path.join('Analysis', 'analysis.txt')
 
 # open the textfile in write mode
-with open(output_path, 'w', encoding='utf-8') as textfile:
+with open(output_path, 'w') as textfile:
     # active the text writer
-    txtwriter = csv.writer(textfile)
     
     #  Write the output that I wish to see on the text file
-    txtwriter.writerow("Election Results")
-    txtwriter.writerow("---------------------")
-    txtwriter.writerow(f"Total Votes: {total_votes}")
-    txtwriter.writerow("---------------------")
-    txtwriter.writerow(f"Charles Casper Stockham: {ccs_perc}% ({count_a})")
-    txtwriter.writerow(f"Diana DeGette: {dd_perc}% ({count_b})")
-    txtwriter.writerow(f"Raymon Anthony Doane: {rad_perc}% ({count_c})")
-    txtwriter.writerow("---------------------")
-    txtwriter.writerow("Winner: Diana DeGette")
+    textfile.write(f"Election Results\n")
+    textfile.write(f"---------------------\n")
+    textfile.write(f"Total Votes: {total_votes}\n")
+    textfile.write(f"---------------------\n")
+    textfile.write(f"{candidate_list[0]}: {ccs_perc}% ({count_a})\n")
+    textfile.write(f"{candidate_list[1]}: {dd_perc}% ({count_b})\n")
+    textfile.write(f"{candidate_list[2]}: {rad_perc}% ({count_c})\n")
+    textfile.write(f"---------------------\n")
+    textfile.write(f"Winner: {candidate_list[1]}\n")
